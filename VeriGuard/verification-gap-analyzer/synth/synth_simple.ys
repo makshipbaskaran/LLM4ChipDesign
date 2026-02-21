@@ -1,0 +1,38 @@
+# Simple Yosys Synthesis Script for simple_fifo
+# Generic synthesis without technology library dependencies
+
+# Read the design
+read_verilog -sv ../rtl/simple_fifo.v
+
+# Set top module
+hierarchy -check -top simple_fifo
+
+# High-level synthesis
+proc;              # Convert processes to netlists
+opt;               # Basic optimizations
+fsm;               # FSM extraction and optimization
+opt;               # Optimize
+memory;            # Memory inference
+opt;               # Optimize
+
+# Technology mapping
+techmap;           # Generic technology mapping
+opt;               # Optimize
+
+# Final cleanup
+clean
+
+# Print statistics
+stat
+
+# Print design hierarchy
+hierarchy -check
+
+# Write synthesized netlist
+write_verilog -noattr synth_simple_fifo.v
+
+# Write JSON for visualization
+write_json synth_simple_fifo.json
+
+# Generate dot file for visualization
+show -prefix simple_fifo_synth -format dot -width
