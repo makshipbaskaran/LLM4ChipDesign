@@ -1,3 +1,0 @@
-VCD info: dumpfile baseline.vcd opened for output.
-TEST PASSED
-tb/simple_fifo_tb.sv:62: $finish called at 135 (1s)
