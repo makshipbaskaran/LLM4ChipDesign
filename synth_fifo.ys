@@ -1,0 +1,38 @@
+# Yosys Synthesis Script for simple_fifo
+# Target: Generic ASIC synthesis with technology mapping
+
+# Read the design
+read_verilog -sv ../rtl/simple_fifo.v
+
+# Elaborate the design (set top module)
+hierarchy -check -top simple_fifo
+
+# High-level synthesis
+proc;              # Process (always/initial blocks) to logic
+opt;               # Basic optimizations
+fsm;               # Finite state machine extraction and optimization
+opt;               # Optimize again
+memory;            # Memory mapping
+opt;               # Optimize again
+
+# Technology mapping to generic gates
+techmap;           # Map to basic logic gates
+opt;               # Optimize
+
+# Map to standard cells (using generic library)
+dfflibmap -liberty /usr/local/share/yosys/techlibs/common/cells.lib
+abc -liberty /usr/local/share/yosys/techlibs/common/cells.lib
+
+# Clean up
+clean;
+opt_clean -purge
+
+# Generate statistics
+stat
+
+# Write outputs
+write_verilog -noattr synth_simple_fifo.v
+write_json synth_simple_fifo.json
+
+# Generate graphical representation
+show -prefix simple_fifo_synth -format dot -width
