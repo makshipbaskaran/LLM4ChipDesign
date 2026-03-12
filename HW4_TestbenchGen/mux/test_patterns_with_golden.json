@@ -1,0 +1,66 @@
+[
+  {
+    "a": 0,
+    "b": 0,
+    "sel": 0,
+    "expected_outputs": {
+      "y": 0
+    }
+  },
+  {
+    "a": 0,
+    "b": 0,
+    "sel": 1,
+    "expected_outputs": {
+      "y": 0
+    }
+  },
+  {
+    "a": 0,
+    "b": 1,
+    "sel": 0,
+    "expected_outputs": {
+      "y": 0
+    }
+  },
+  {
+    "a": 0,
+    "b": 1,
+    "sel": 1,
+    "expected_outputs": {
+      "y": 1
+    }
+  },
+  {
+    "a": 1,
+    "b": 0,
+    "sel": 0,
+    "expected_outputs": {
+      "y": 1
+    }
+  },
+  {
+    "a": 1,
+    "b": 0,
+    "sel": 1,
+    "expected_outputs": {
+      "y": 0
+    }
+  },
+  {
+    "a": 1,
+    "b": 1,
+    "sel": 0,
+    "expected_outputs": {
+      "y": 1
+    }
+  },
+  {
+    "a": 1,
+    "b": 1,
+    "sel": 1,
+    "expected_outputs": {
+      "y": 1
+    }
+  }
+]
