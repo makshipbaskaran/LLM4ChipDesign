@@ -1,0 +1,72 @@
+[
+  {
+    "req": 0,
+    "expected_outputs": {
+      "code": 0,
+      "valid": 0
+    }
+  },
+  {
+    "req": 8,
+    "expected_outputs": {
+      "code": 3,
+      "valid": 1
+    }
+  },
+  {
+    "req": 4,
+    "expected_outputs": {
+      "code": 2,
+      "valid": 1
+    }
+  },
+  {
+    "req": 2,
+    "expected_outputs": {
+      "code": 1,
+      "valid": 1
+    }
+  },
+  {
+    "req": 1,
+    "expected_outputs": {
+      "code": 0,
+      "valid": 1
+    }
+  },
+  {
+    "req": 12,
+    "expected_outputs": {
+      "code": 3,
+      "valid": 1
+    }
+  },
+  {
+    "req": 6,
+    "expected_outputs": {
+      "code": 2,
+      "valid": 1
+    }
+  },
+  {
+    "req": 3,
+    "expected_outputs": {
+      "code": 1,
+      "valid": 1
+    }
+  },
+  {
+    "req": 10,
+    "expected_outputs": {
+      "code": 3,
+      "valid": 1
+    }
+  },
+  {
+    "req": 5,
+    "expected_outputs": {
+      "code": 2,
+      "valid": 1
+    }
+  }
+]
