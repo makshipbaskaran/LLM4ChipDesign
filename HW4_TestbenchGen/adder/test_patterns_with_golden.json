@@ -1,0 +1,82 @@
+[
+  {
+    "a": 0,
+    "b": 0,
+    "expected_outputs": {
+      "sum": 0,
+      "carry": 0
+    }
+  },
+  {
+    "a": 15,
+    "b": 1,
+    "expected_outputs": {
+      "sum": 0,
+      "carry": 1
+    }
+  },
+  {
+    "a": 8,
+    "b": 8,
+    "expected_outputs": {
+      "sum": 0,
+      "carry": 1
+    }
+  },
+  {
+    "a": 15,
+    "b": 15,
+    "expected_outputs": {
+      "sum": 14,
+      "carry": 1
+    }
+  },
+  {
+    "a": 1,
+    "b": 1,
+    "expected_outputs": {
+      "sum": 2,
+      "carry": 0
+    }
+  },
+  {
+    "a": 14,
+    "b": 1,
+    "expected_outputs": {
+      "sum": 15,
+      "carry": 0
+    }
+  },
+  {
+    "a": 5,
+    "b": 3,
+    "expected_outputs": {
+      "sum": 8,
+      "carry": 0
+    }
+  },
+  {
+    "a": 6,
+    "b": 5,
+    "expected_outputs": {
+      "sum": 11,
+      "carry": 0
+    }
+  },
+  {
+    "a": 10,
+    "b": 5,
+    "expected_outputs": {
+      "sum": 15,
+      "carry": 0
+    }
+  },
+  {
+    "a": 3,
+    "b": 12,
+    "expected_outputs": {
+      "sum": 15,
+      "carry": 0
+    }
+  }
+]
