@@ -1,0 +1,4 @@
+S0 = (!A0 | B0 | Cin | S0) & (A0 | !B0 | Cin | S0) & (A0 | B0 | !Cin | S0) & (!A0 | !B0 | !Cin | S0) & (A0 | B0 | Cin | !S0) & (!A0 | !B0 | Cin | !S0) & (!A0 | B0 | !Cin | !S0) & (A0 | !B0 | !Cin | !S0)
+C1 = (!A0 | !B0 | Cin | C1) & (!A0 | B0 | !Cin | C1) & (A0 | !B0 | !Cin | C1) & (!A0 | !B0 | !Cin | C1) & (A0 | B0 | Cin | !C1) & (!A0 | B0 | Cin | !C1) & (A0 | !B0 | Cin | !C1) & (A0 | B0 | !Cin | !C1)
+S1 = (!A1 | B1 | C1 | S1) & (A1 | !B1 | C1 | S1) & (A1 | B1 | !C1 | S1) & (!A1 | !B1 | !C1 | S1) & (A1 | B1 | C1 | !S1) & (!A1 | !B1 | C1 | !S1) & (!A1 | B1 | !C1 | !S1) & (A1 | !B1 | !C1 | !S1)
+Cout = (!A1 | !B1 | C1 | Cout) & (!A1 | B1 | !C1 | Cout) & (A1 | !B1 | !C1 | Cout) & (!A1 | !B1 | !C1 | Cout) & (A1 | B1 | C1 | !Cout) & (!A1 | B1 | C1 | !Cout) & (A1 | !B1 | C1 | !Cout) & (A1 | B1 | !C1 | !Cout)
