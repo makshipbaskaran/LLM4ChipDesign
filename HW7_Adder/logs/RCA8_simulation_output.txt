@@ -1,0 +1,24 @@
+VCD info: dumpfile RCA8_waveform.vcd opened for output.
+PASS RCA8: a=00 b=00 sum=00 cout=0 c=0000000
+PASS RCA8: a=01 b=01 sum=02 cout=0 c=0000001
+PASS RCA8: a=0f b=01 sum=10 cout=0 c=0001111
+PASS RCA8: a=55 b=aa sum=ff cout=0 c=0000000
+PASS RCA8: a=ff b=01 sum=00 cout=1 c=1111111
+PASS RCA8: a=ff b=ff sum=fe cout=1 c=1111111
+PASS RCA8: a=00 b=ff sum=ff cout=0 c=0000000
+PASS RCA8: a=11 b=ee sum=ff cout=0 c=0000000
+PASS RCA8: a=22 b=dd sum=ff cout=0 c=0000000
+PASS RCA8: a=33 b=cc sum=ff cout=0 c=0000000
+PASS RCA8: a=44 b=bb sum=ff cout=0 c=0000000
+PASS RCA8: a=55 b=aa sum=ff cout=0 c=0000000
+PASS RCA8: a=66 b=99 sum=ff cout=0 c=0000000
+PASS RCA8: a=77 b=88 sum=ff cout=0 c=0000000
+PASS RCA8: a=88 b=77 sum=ff cout=0 c=0000000
+PASS RCA8: a=99 b=66 sum=ff cout=0 c=0000000
+PASS RCA8: a=aa b=55 sum=ff cout=0 c=0000000
+PASS RCA8: a=bb b=44 sum=ff cout=0 c=0000000
+PASS RCA8: a=cc b=33 sum=ff cout=0 c=0000000
+PASS RCA8: a=dd b=22 sum=ff cout=0 c=0000000
+PASS RCA8: a=ee b=11 sum=ff cout=0 c=0000000
+PASS RCA8: a=ff b=00 sum=ff cout=0 c=0000000
+SUMMARY RCA8: ALL TESTS PASSED
