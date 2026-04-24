@@ -1,0 +1,7 @@
+read_verilog -sv ../golden/CLA8.v
+rename CLA8 gold
+read_verilog -sv ../generated/CLA8_llm_generated.v
+rename CLA8 gate
+equiv_make gold gate equiv
+equiv_simple equiv
+equiv_status -assert equiv

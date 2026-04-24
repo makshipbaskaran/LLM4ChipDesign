@@ -1,0 +1,11 @@
+# synth_adder.ys -- run with: ADDER_FILE=<file> TOP_MODULE=<module> yosys -s synth_adder.ys
+read_verilog $env(ADDER_FILE)
+hierarchy -check -top $env(TOP_MODULE)
+proc; opt; fsm; opt; memory; opt
+techmap; opt
+# If nangate45.lib is available, uncomment these two lines:
+# dfflibmap -liberty nangate45.lib
+# abc -liberty nangate45.lib
+abc -g AND,OR,XOR,XNOR,NAND,NOR,MUX
+clean
+stat

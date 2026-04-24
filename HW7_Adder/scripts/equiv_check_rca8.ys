@@ -1,0 +1,7 @@
+read_verilog -sv ../golden/RCA8.v
+rename RCA8 gold
+read_verilog -sv ../generated/RCA8_llm_generated.v
+rename RCA8 gate
+equiv_make gold gate equiv
+equiv_simple equiv
+equiv_status -assert equiv
