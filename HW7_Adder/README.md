@@ -3,12 +3,12 @@
 Selected adders: RCA8 and CLA8, using the professor-provided golden files.
 
 ## Folder contents
-- `golden/`: professor repo files: RCA4, RCA8, CLA4, CLA8
+- `golden/`:  repo files: RCA4, RCA8, CLA4, CLA8
 - `generated/`: LLM-style regenerated RCA8 and CLA8 designs
 - `testbenches/`: internal-signal-checking testbenches
 - `scripts/`: Yosys synthesis, equivalence, optimization, and plotting scripts
 - `report/`: draft final report
-- `logs/`: place simulation and synthesis outputs here
+- `logs/`:  simulation and synthesis outputs here
 
 ## Run simulations
 ```bash
