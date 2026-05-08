@@ -1,0 +1,228 @@
+VCD info: dumpfile gapfix.vcd opened for output.
+TEST START
+
+=== TEST 1: Initial State After Reset ===
+LOG: 35 : INFO  : simple_fifo_tb_gapfix : initial_empty : expected_value: PASS actual_value: PASS
+LOG: 35 : INFO  : simple_fifo_tb_gapfix : initial_full : expected_value: PASS actual_value: PASS
+
+=== TEST 2: Basic Write/Read with Data Integrity ===
+ERROR: assertions/simple_fifo_sva.sv:37: ASSERTION FAILED: Write attempted when FIFO FULL
+       Time: 115  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 115 : INFO  : simple_fifo_tb_gapfix : fifo_full_after_4_writes : expected_value: PASS actual_value: PASS
+LOG: 115 : INFO  : simple_fifo_tb_gapfix : fifo_not_empty_after_writes : expected_value: PASS actual_value: PASS
+LOG: 135 : INFO  : simple_fifo_tb_gapfix : data_integrity_read_1 : expected_value: PASS actual_value: PASS
+LOG: 155 : INFO  : simple_fifo_tb_gapfix : data_integrity_read_2 : expected_value: PASS actual_value: PASS
+LOG: 175 : INFO  : simple_fifo_tb_gapfix : data_integrity_read_3 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:42: ASSERTION FAILED: Read attempted when FIFO EMPTY
+       Time: 195  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 195 : INFO  : simple_fifo_tb_gapfix : fifo_empty_after_4_reads : expected_value: PASS actual_value: PASS
+LOG: 195 : INFO  : simple_fifo_tb_gapfix : fifo_not_full_after_reads : expected_value: PASS actual_value: PASS
+
+=== TEST 3: Overflow Detection (6 writes without reads) ===
+ERROR: assertions/simple_fifo_sva.sv:37: ASSERTION FAILED: Write attempted when FIFO FULL
+       Time: 275  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 275 : INFO  : simple_fifo_tb_gapfix : full_before_overflow : expected_value: PASS actual_value: PASS
+LOG: 275 : WARNING : overflow_test : Intentionally writing to full FIFO
+ERROR: assertions/simple_fifo_sva.sv:37: ASSERTION FAILED: Write attempted when FIFO FULL
+       Time: 285  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=5)
+       Time: 295  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=5)
+       Time: 305  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=6)
+       Time: 315  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=6)
+       Time: 325  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=5)
+       Time: 335  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 335 : ERROR : simple_fifo_tb_gapfix : overflow_cleanup_read : expected_value: PASS actual_value: FAIL - Data mismatch: expected=0x11, got=0x55
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=5)
+       Time: 345  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 355 : ERROR : simple_fifo_tb_gapfix : overflow_cleanup_read : expected_value: PASS actual_value: FAIL - Data mismatch: expected=0x22, got=0x66
+LOG: 375 : INFO  : simple_fifo_tb_gapfix : overflow_cleanup_read : expected_value: PASS actual_value: PASS
+
+=== TEST 4: Underflow Detection (6 reads without writes) ===
+LOG: 395 : ERROR : simple_fifo_tb_gapfix : empty_before_underflow : expected_value: PASS actual_value: FAIL - FIFO should be empty before underflow attempt
+LOG: 395 : WARNING : underflow_test : Intentionally reading from empty FIFO
+ERROR: assertions/simple_fifo_sva.sv:42: ASSERTION FAILED: Read attempted when FIFO EMPTY
+       Time: 435  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:42: ASSERTION FAILED: Read attempted when FIFO EMPTY
+       Time: 445  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 455  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 465  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 475  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 485  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-3)
+       Time: 495  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-3)
+       Time: 505  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-4)
+       Time: 515  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-4)
+       Time: 515  Scope: simple_fifo_tb_gapfix.sva_checker
+
+=== TEST 5: Simultaneous Read/Write ===
+ERROR: assertions/simple_fifo_sva.sv:37: ASSERTION FAILED: Write attempted when FIFO FULL
+       Time: 525  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-4)
+       Time: 525  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-4)
+       Time: 525  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-3)
+       Time: 535  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-3)
+       Time: 545  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 555  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 565  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 575  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 585  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 595  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 595  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 595 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_1 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 605  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 605  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 615  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 615 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_2 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 625  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 635  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 635 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_3 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 645  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 655  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 655 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_4 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 665  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:60: ASSERTION FAILED: EMPTY flag asserted incorrectly (expected_count=-2)
+       Time: 675  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 675  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 675 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_5 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:60: ASSERTION FAILED: EMPTY flag asserted incorrectly (expected_count=-2)
+       Time: 685  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 685  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 695  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 695 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_6 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 705  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 715  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 715 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_7 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 725  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 735  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 735 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_8 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 745  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 755  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 755  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 755 : INFO  : simple_fifo_tb_gapfix : simultaneous_rw_cycle_9 : expected_value: PASS actual_value: PASS
+
+=== TEST 6: Data Pattern Test ===
+ERROR: assertions/simple_fifo_sva.sv:37: ASSERTION FAILED: Write attempted when FIFO FULL
+       Time: 765  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 765  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 765  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 775  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 785  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 795  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 805  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:60: ASSERTION FAILED: EMPTY flag asserted incorrectly (expected_count=2)
+       Time: 835  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:42: ASSERTION FAILED: Read attempted when FIFO EMPTY
+       Time: 845  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:60: ASSERTION FAILED: EMPTY flag asserted incorrectly (expected_count=2)
+       Time: 845  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 855 : ERROR : simple_fifo_tb_gapfix : pattern_walking_ones_1 : expected_value: PASS actual_value: FAIL - Data mismatch: expected=0x01, got=0x04
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 875  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 875 : ERROR : simple_fifo_tb_gapfix : pattern_walking_ones_2 : expected_value: PASS actual_value: FAIL - Data mismatch: expected=0x02, got=0x08
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 885  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 895  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 895 : ERROR : simple_fifo_tb_gapfix : pattern_walking_ones_3 : expected_value: PASS actual_value: FAIL - Data mismatch: expected=0x04, got=0x01
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 905  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 915  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 915  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 915 : ERROR : simple_fifo_tb_gapfix : pattern_walking_ones_4 : expected_value: PASS actual_value: FAIL - Data mismatch: expected=0x08, got=0x02
+ERROR: assertions/simple_fifo_sva.sv:37: ASSERTION FAILED: Write attempted when FIFO FULL
+       Time: 925  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 925  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 925  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 935  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 945  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 955  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 965  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:60: ASSERTION FAILED: EMPTY flag asserted incorrectly (expected_count=2)
+       Time: 995  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:42: ASSERTION FAILED: Read attempted when FIFO EMPTY
+       Time: 1005  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:60: ASSERTION FAILED: EMPTY flag asserted incorrectly (expected_count=2)
+       Time: 1005  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 1015 : INFO  : simple_fifo_tb_gapfix : pattern_alternating_1 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 1035  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 1035 : INFO  : simple_fifo_tb_gapfix : pattern_alternating_2 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:56: ASSERTION FAILED: EMPTY flag not asserted when expected_count=0
+       Time: 1045  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 1055  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 1055 : INFO  : simple_fifo_tb_gapfix : pattern_alternating_3 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-1)
+       Time: 1065  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 1075  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 1075  Scope: simple_fifo_tb_gapfix.sva_checker
+LOG: 1075 : INFO  : simple_fifo_tb_gapfix : pattern_alternating_4 : expected_value: PASS actual_value: PASS
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 1085  Scope: simple_fifo_tb_gapfix.sva_checker
+ERROR: assertions/simple_fifo_sva.sv:65: ASSERTION FAILED: FIFO occupancy out of bounds (expected_count=-2)
+       Time: 1085  Scope: simple_fifo_tb_gapfix.sva_checker
+
+========================================
+VERIFICATION GAP CLOSURE TEST COMPLETE
+========================================
+Total checks: 31
+Errors found: 7
+TEST FAILED
+FATAL: tb/simple_fifo_tb_gapfix.sv:240: Verification completed with 7 errors
+       Time: 1095  Scope: simple_fifo_tb_gapfix
+ERROR: assertions/simple_fifo_sva.sv:51: ASSERTION FAILED: FULL flag asserted incorrectly (expected_count=-2)
+       Time: 1095  Scope: simple_fifo_tb_gapfix.sva_checker
