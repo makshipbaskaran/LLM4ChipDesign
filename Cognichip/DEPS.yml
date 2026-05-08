@@ -1,0 +1,14 @@
+# Baseline: Simple sequential test (no gap detection)
+baseline:
+  deps:
+    - verification-gap-analyzer/rtl/simple_fifo.v
+    - verification-gap-analyzer/tb/simple_fifo_tb.sv
+  top: simple_fifo_tb
+
+# VeriGuard: Comprehensive gap detection with assertions
+veriguard:
+  deps:
+    - verification-gap-analyzer/rtl/simple_fifo.v
+    - verification-gap-analyzer/assertions/veriguard_autogen_sva.sv
+    - verification-gap-analyzer/tb/simple_fifo_tb_gapfix.sv
+  top: simple_fifo_tb_gapfix
